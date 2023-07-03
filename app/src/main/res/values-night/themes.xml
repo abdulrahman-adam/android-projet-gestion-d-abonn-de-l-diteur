@@ -1,0 +1,8 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Hypnotime" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your dark theme here. -->
+        <!-- primary brand color -->
+
+    </style>
+</resources>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/purple_500"
+
+    android:padding="16dp"
+    android:visibility="visible"
+    tools:context=".RegisterActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/purple_500"
+        android:textColor="@color/white"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        tools:ignore="MissingConstraints"
+
+
+        />
+
+
+
+
+    <EditText
+        android:id="@+id/editName"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="56dp"
+        android:background="@color/white"
+        android:ems="10"
+        android:hint="Nom"
+        android:inputType="text"
+        android:paddingLeft="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/editEmail"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/white"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="text"
+        android:paddingLeft="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/editPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editName" />
+
+    <EditText
+        android:id="@+id/editPassword"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/white"
+        android:ems="10"
+        android:hint="Mot de passe"
+        android:inputType="textPassword"
+        android:paddingLeft="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editEmail" />
+
+    <EditText
+        android:id="@+id/editConfirmPassword"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/white"
+        android:ems="10"
+        android:hint="Confirmer mot de passe"
+        android:inputType="textPassword"
+        android:paddingLeft="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editPassword" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="150dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="46dp"
+        app:layout_constraintBottom_toTopOf="@+id/editName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/hypno" />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/white"
+        android:text="ENREGISTRER"
+        android:textColor="#101010"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvError"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/tvError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="TextView"
+        android:textColor="@color/error"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@+id/editConfirmPassword"
+        tools:layout_editor_absoluteX="72dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

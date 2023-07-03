@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Hypnotime</string>
+    <string name="home_activity_title">Accueil</string>
+
+
+    <string-array name="posts">
+        <item>Post 1</item>
+        <item>Post 2</item>
+        <item>Post 3</item>
+        <item>Post 4</item>
+        <item>Post 5</item>
+
+
+    </string-array>
+    <string name="register_activity_title">Créer un compte</string>
+    <string name="error_empty_fields">Tous les champs sont obligatoires</string>
+    <string name="passwords_different">Les mots de passe sont différents</string>
+    <string name="success_register">Votre compte a été créer avec succès</string>
+</resources>

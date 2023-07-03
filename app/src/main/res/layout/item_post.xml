@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:backgroundTint="#F8F5F5"
+    android:paddingBottom="10dp">
+
+    <ImageView
+        android:id="@+id/imagePost"
+        android:layout_width="115dp"
+        android:layout_height="115dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="16dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/hypno"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTitre"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:text="Titre"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/imageShowPopup"
+        app:layout_constraintStart_toEndOf="@+id/imagePost"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imagePost"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitre"
+        tools:text="Une description de texte au lieu  de ce texte  qui ne veut rien dire....       " />
+
+    <TextView
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/design_default_color_surface"
+        android:text="J'aime"
+        android:textColor="#0A72C5"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imagePost"
+        app:layout_constraintTop_toBottomOf="@+id/tvDescription" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Partager"
+        android:textColor="#0A72C5"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/tvDescription" />
+
+    <ImageView
+        android:id="@+id/imageShowPopup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_show_popup" />
+</androidx.constraintlayout.widget.ConstraintLayout>
