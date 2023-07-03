@@ -30,7 +30,8 @@ class FaceBookDatabase(mContext : Context) : SQLiteOpenHelper(
                  $POST_ID integer PRIMARY KEY,
                  $TITLE varchar(50),
                  $DESCRIPTION text,
-                 $IMAGE blob
+                 $IMAGE blob,
+                 $LIKES Integer
             )
         """.trimIndent()
 
@@ -87,6 +88,7 @@ class FaceBookDatabase(mContext : Context) : SQLiteOpenHelper(
         values.put(TITLE, post.titre);
         values.put(DESCRIPTION, post.description);
         values.put(IMAGE, post.image);
+        values.put(LIKES, 0);
         val result = db.insert(POSTS_TABLE_NAME,null,values)
         db.close()
         return result != -1L
@@ -104,8 +106,9 @@ class FaceBookDatabase(mContext : Context) : SQLiteOpenHelper(
                     val titre = cursor.getString(cursor.getColumnIndexOrThrow(TITLE))
                     val description = cursor.getString(cursor.getColumnIndexOrThrow(DESCRIPTION))
                     val image = cursor.getBlob(cursor.getColumnIndexOrThrow(IMAGE))
+                    val likes = cursor.getInt(cursor.getColumnIndexOrThrow(LIKES))
 
-                    val post = Post(id, titre, description, image);
+                    val post = Post(id, titre, description, image,likes);
                     posts.add(post);
                 } while(cursor.moveToNext())
             }
@@ -114,9 +117,26 @@ class FaceBookDatabase(mContext : Context) : SQLiteOpenHelper(
         return posts;
     }
 
+    fun deletePost(id: Int): Boolean{
+        val db = writableDatabase
+        val rawDeleted = db.delete(POSTS_TABLE_NAME, "id=?", arrayOf(id.toString()))
+        return rawDeleted >0
+    }
+
+    fun incrementLike(post: Post) {
+
+        val db = this.writableDatabase;
+        val newLikesCount = post.jaime+1;
+        val values = ContentValues()
+        values.put(POST_ID,post.id);
+        values.put(LIKES, newLikesCount)
+        db.update(POSTS_TABLE_NAME, values, "id=?", arrayOf("${post.id}"));
+        db.close();
+    }
+
     companion object {
         private val DB_NAME = "facebook_db"
-        private val DB_VERSION = 1
+        private val DB_VERSION = 3
 
         // La table users
         private val USERS_TABLE_NAME = "users"
@@ -131,6 +151,7 @@ class FaceBookDatabase(mContext : Context) : SQLiteOpenHelper(
         private val TITLE = "title"
         private val DESCRIPTION = "description"
         private val IMAGE = "image"
+        private val LIKES = "jaime"
     }
 
 }

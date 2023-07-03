@@ -11,7 +11,9 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.TextView
+import android.widget.Toast
 import com.example.hypnotime.data.Post
+import com.example.hypnotime.db.FaceBookDatabase
 
 class PostsAdapter(
     var mContext: Context,
@@ -26,13 +28,17 @@ class PostsAdapter(
         val tvDescription = itemView.findViewById<TextView>(R.id.tvDescription);
         val imagePost = itemView.findViewById<ImageView>(R.id.imagePost);
         val imageShowPopup = itemView.findViewById<ImageView>(R.id.imageShowPopup);
+        val tvLikes = itemView.findViewById<TextView>(R.id.tvLikes);
+        val tvShare = itemView.findViewById<TextView>(R.id.tvShare);
 
         tvTitre.text = post.titre;
         tvDescription.text = post.description;
 
         val bitmap = getBitmap(post.image);
         imagePost.setImageBitmap(bitmap);
+        tvLikes.text = "${post.jaime} j'aime"
 
+        val db = FaceBookDatabase(mContext);
         imageShowPopup.setOnClickListener{
             val popupMenu = PopupMenu(mContext, imageShowPopup)
             popupMenu.menuInflater.inflate(R.menu.list_popup_menu,popupMenu.menu);
@@ -46,13 +52,36 @@ class PostsAdapter(
                     }
 
                     R.id.itemDelete -> {
-                        values.removeAt(position)
-                        notifyDataSetChanged();
+
+                        val resultDelete = db.deletePost(post.id);
+                        if(resultDelete) {
+                            values.removeAt(position)
+                            notifyDataSetChanged();
+                        } else {
+                            Toast.makeText(mContext, "Erreur de suppression", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
                 true;
             }
             popupMenu.show();
+        }
+
+        tvLikes.setOnClickListener {
+            // Incrémenter le compteur de j'aime
+            db.incrementLike(post);
+            val incrementedLikes = post.jaime+1;
+            tvLikes.text = "$incrementedLikes j'aime"
+        }
+
+        tvShare.setOnClickListener {
+            val sendIntent = Intent().apply {
+                action = Intent.ACTION_SEND;
+                putExtra(Intent.EXTRA_TEXT, "https://www.facebook.com/posts/${post.id}")
+                type = "text/plain"
+            }
+            val shareIntent = Intent.createChooser(sendIntent, post.titre)
+            mContext.startActivity(shareIntent);
         }
         return itemView;
     }

@@ -46,12 +46,15 @@ class HomeActivity : AppCompatActivity() {
 
         // On afficher la list
         listPosts = findViewById(R.id.listPosts);
-            postsArray = db.findPosts();
+
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        postsArray = db.findPosts();
         adapter = PostsAdapter(this, R.layout.item_post, postsArray);
         listPosts.adapter = adapter;
-
-
-
         listPosts.setOnItemClickListener{ adapterView, view, position, id ->
             val clickedPost = postsArray[position]
             Intent(this, PostDetailActivity::class.java).also {
@@ -59,7 +62,6 @@ class HomeActivity : AppCompatActivity() {
                 startActivity(it)
             }
         }
-
         registerForContextMenu(listPosts);
     }
 
